@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/heart_24">
+
+
+
+
+    <AbsoluteLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"        >
+        <ImageButton
+            android:layout_width="170dp"
+            android:layout_height="90dp"
+            android:background="@drawable/main_sms"
+            android:id="@+id/btnSMS"
+            android:layout_gravity="center_horizontal"
+            android:layout_x="95dp"
+            android:layout_y="11dp" />
+
+        <ImageButton
+            android:layout_width="170dp"
+            android:layout_height="90dp"
+            android:background="@drawable/main_truyengnan"
+            android:id="@+id/imgb_main_truyengnan"
+            android:layout_gravity="center_horizontal"
+            android:layout_x="32dp"
+            android:layout_y="181dp" />
+
+        <ImageButton
+            android:layout_width="170dp"
+            android:layout_height="90dp"
+            android:background="@drawable/main_chamngon"
+            android:id="@+id/imgb_main_chamngon"
+            android:layout_gravity="center_horizontal"
+            android:layout_x="148dp"
+            android:layout_y="89dp" />
+
+        <ImageButton
+        android:layout_width="170dp"
+        android:layout_height="90dp"
+        android:background="@drawable/smslove"
+        android:id="@+id/imgb_smslove"
+        android:layout_gravity="center_horizontal"
+            android:layout_x="157dp"
+            android:layout_y="301dp" />
+
+    </AbsoluteLayout>
+
+
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:layout_marginLeft="17dp"-->
+        <!-->-->
+        <!--<ImageButton-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/aboutteam"-->
+            <!--android:id="@+id/imgb_aboutteam"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_margin="5dp"/>-->
+
+        <!--<ImageButton-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/howtouse"-->
+            <!--android:id="@+id/imgb_howtouse"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_margin="5dp"/>-->
+        <!--<ImageButton-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/icon_listentomusic"-->
+            <!--android:id="@+id/imgb_sound"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_margin="5dp"/>-->
+
+        <!--<ImageButton-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/icon_star"-->
+            <!--android:id="@+id/imgb_star"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_margin="5dp"/>-->
+        <!--<ImageButton-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/exit2"-->
+            <!--android:id="@+id/imgb_exit"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_margin="5dp"/>-->
+    <!--</LinearLayout>-->
+
+</LinearLayout>
