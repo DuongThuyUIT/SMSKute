@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".ListTopic" >
         </activity>
+        <activity android:name=".DetailSMS" >
+        </activity>
     </application>
 
 </manifest>

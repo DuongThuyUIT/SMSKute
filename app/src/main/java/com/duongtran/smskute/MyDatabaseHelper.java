@@ -77,16 +77,31 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Nếu trong bảng Topic chưa có dữ liệu,
-    // Trèn vào mặc định 2 bản ghi.
+    // Chèn vào mặc định 2 bản ghi.
     public void createDefaultTopicsIfNeed()  {
         int count = this.getTopicsCount();
         if(count == 0 ) {
-            Topic topic1 = new Topic("VLT",
-                    "Valentine");
-            Topic topic2 = new Topic("GS",
-                    "Giáng sinh");
+            Topic topic1 = new Topic("VLT", "Valentine");
+            Topic topic2 = new Topic("GS", "Giáng sinh");
+            Topic topic3 = new Topic("2010", "20-10");
+            Topic topic4 = new Topic("83", "8-3");
+            Topic topic5 = new Topic("CNN", "Chúc ngủ ngon");
+            Topic topic6 = new Topic("CBS", "Chào buổi sáng");
+            Topic topic7 = new Topic("TT", "Tỏ tình");
+            Topic topic8 = new Topic("NM", "Năm mới");
+            Topic topic9 = new Topic("CSN", "Chúc sinh nhật");
+            Topic topic10 = new Topic("CTT", "Chúc thi tốt");
             this.addTopic(topic1);
             this.addTopic(topic2);
+            this.addTopic(topic3);
+            this.addTopic(topic3);
+            this.addTopic(topic4);
+            this.addTopic(topic5);
+            this.addTopic(topic6);
+            this.addTopic(topic7);
+            this.addTopic(topic8);
+            this.addTopic(topic9);
+            this.addTopic(topic10);
         }
     }
 
@@ -115,10 +130,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_TOPIC_ID, tp.getId());
         values.put(COLUMN_TOPIC_NAME, tp.getTopicName());
 
-
-        // Trèn một dòng dữ liệu vào bảng.
+        // Chèn một dòng dữ liệu vào bảng.
         db.insert(TABLE_TOPIC, null, values);
-
 
         // Đóng kết nối database.
         db.close();
@@ -129,12 +142,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void createDefaultSMSIfNeed()  {
         int count = this.getSMSCount();
         if(count == 0 ) {
-            SMS sms1 = new SMS("Content_1", "VLT", false);
-            SMS sms2 = new SMS("Content_2", "VLT", false);
-            SMS sms3 = new SMS("Content_3", "GS", false);
+            SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhật", "VLT", false);
+            SMS sms2 = new SMS("Chúng ta đã cùng vượt qua những khoảng thời gian khó khn, em yêu. Trong ngày đặc biệt hôm nay. Anh chỉ muốn cho tất cả mọi người biết rằng: em là duy nhất của anh... Anh yêu em rất nhiều", "VLT", false);
+            SMS sms3 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "GS", false);
+            SMS sms4 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "CSN", false);
             this.addSMS(sms1);
             this.addSMS(sms2);
             this.addSMS(sms3);
+            this.addSMS(sms4);
         }
     }
 
@@ -164,13 +179,67 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_SMS_TOPICID, sms.getTopicId());
         values.put(COLUMN_SMS_LIKED, sms.isLiked());
 
-
-        // Trèn một dòng dữ liệu vào bảng.
+        // Chèn một dòng dữ liệu vào bảng.
         db.insert(TABLE_SMS, null, values);
-
 
         // Đóng kết nối database.
         db.close();
+    }
+
+    public List<Topic> getAllTopics() {
+        Log.i(TAG, "MyDatabaseHelper.getAllTopics ... " );
+
+        List<Topic> topicList = new ArrayList<Topic>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_TOPIC;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        // Duyệt trên con trỏ, và thêm vào danh sách.
+        if (cursor.moveToFirst()) {
+            do {
+                Topic topic = new Topic();
+                topic.setId(cursor.getString(0));
+                topic.setTopicName(cursor.getString(1));
+
+                // Thêm vào danh sách.
+                topicList.add(topic);
+            } while (cursor.moveToNext());
+        }
+
+        // return note list
+        return topicList;
+    }
+
+    public List<SMS> getSMS(String topic) {
+        Log.i(TAG, "MyDatabaseHelper.getSMS ... " );
+
+        List<SMS> smsList = new ArrayList<SMS>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_SMS + " WHERE topicId = '" + topic + "'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        // Duyệt trên con trỏ, và thêm vào danh sách.
+        if (cursor.moveToFirst()) {
+            do {
+                SMS sms = new SMS();
+                sms.setId(Integer.parseInt(cursor.getString(0)));
+                sms.setContent(cursor.getString(1));
+                sms.setLiked(Boolean.parseBoolean(cursor.getString(2)));
+                sms.setTopicId(cursor.getString(3));
+
+                // Thêm vào danh sách.
+                smsList.add(sms);
+            } while (cursor.moveToNext());
+        }
+
+        // return note list
+        return smsList;
     }
 
 //
@@ -238,12 +307,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 //                new String[]{String.valueOf(note.getNoteId())});
 //    }
 //
-//    public void deleteNote(Note note) {
-//        Log.i(TAG, "MyDatabaseHelper.updateNote ... " + note.getNoteTitle() );
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?",
-//                new String[] { String.valueOf(note.getNoteId()) });
-//        db.close();
-//    }
+    public void deleteSMS(SMS sms) {
+        Log.i(TAG, "MyDatabaseHelper.updateSMS ... " + sms.getId() );
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SMS, COLUMN_SMS_ID + " = ?",
+                new String[] { String.valueOf(sms.getId()) });
+        db.close();
+    }
 }

@@ -50,4 +50,8 @@ public class SMS implements Serializable {
     public void setTopicId(String topicId) {
         this.topicId = topicId;
     }
+
+    public String toString() {
+        return this.content;
+    }
 }

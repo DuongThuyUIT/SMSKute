@@ -6,10 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/txtv_content1"
-        android:background="@drawable/frame_8"
-        android:padding="70dp"
-        android:layout_weight="0.31" />
+
+        android:id="@+id/txtContent"
+        android:padding="20dp"
+        android:background="@drawable/frame_9"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/heart_28"></LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
