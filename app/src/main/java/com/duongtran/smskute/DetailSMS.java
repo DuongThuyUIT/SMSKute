@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -16,6 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailSMS extends Activity {
+    private static final int MENU_ITEM_SENT = 111;
+    private static final int MENU_ITEM_LIKE = 222;
+    private static final int MENU_ITEM_SHARE = 333;
+    private static final int MENU_ITEM_EDIT = 444;
+    private static final int MENU_ITEM_DELETE = 555;
 
     ArrayList<SMS> arrSMS = new ArrayList<SMS>();
     ArrayAdapterSMS adapter=null;
@@ -34,31 +40,27 @@ public class DetailSMS extends Activity {
         this.arrSMS.addAll(list);
         //Khởi tạo đối tượng adapter và gán Data source
 
-//
         adapter = new ArrayAdapterSMS(
                 this,
                 R.layout.item_sms,// lấy custom layout
                 arrSMS/*thiết lập data source*/);
         lvSMS.setAdapter(adapter);//gán
 
-//        lvSMS.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> arg0, View arg1,
-//                                    int arg2, long arg3) {
-//                // TODO Auto-generated method stub
-//                Toast.makeText(ShowListAuthorActivity.this, "View -->" + list.get(arg2).toString(), Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(ShowListAuthorActivity.this, CreateAuthorActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putInt("KEY", 1);
-//                bundle.putString("getField1", list.get(arg2).getField1().toString());
-//                bundle.putString("getField2", list.get(arg2).getField2().toString());
-//                bundle.putString("getField3", list.get(arg2).getField3().toString());
-//                intent.putExtra("DATA", bundle);
-//                dataClick = list.get(arg2);
-//                startActivityForResult(intent, MainActivity.OPEN_AUTHOR_DIALOG);
-//            }
-//        });
+        registerForContextMenu(this.lvSMS);
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view,
+                                    ContextMenu.ContextMenuInfo menuInfo)    {
 
+        super.onCreateContextMenu(menu, view, menuInfo);
+//        menu.setHeaderTitle("Select The Action");
+
+        // groupId, itemId, order, title
+        menu.add(0, MENU_ITEM_SENT , 0, "Sent");
+        menu.add(0, MENU_ITEM_LIKE, 1, "Like");
+        menu.add(0, MENU_ITEM_SHARE , 2, "Share");
+        menu.add(0, MENU_ITEM_EDIT, 3, "Edit");
+        menu.add(0, MENU_ITEM_DELETE, 4, "Delete");
     }
 }
