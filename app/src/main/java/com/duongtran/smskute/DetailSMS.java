@@ -67,23 +67,37 @@ public class DetailSMS extends Activity {
         menu.add(0, MENU_ITEM_DELETE, 4, "Delete");
     }
 
-//    @Override
-//    public boolean onContextItemSelected(MenuItem item){
-//        AdapterView.AdapterContextMenuInfo
-//                info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//
-//        final SMS selectedNote = (SMS) this.lvSMS.getItemAtPosition(info.position);
-//
-//        if(item.getItemId() == MENU_ITEM_SENT){
-//            Toast.makeText(getApplicationContext(),selectedNote.getNoteContent(),Toast.LENGTH_LONG).show();
-//        }
-//        else if(item.getItemId() == MENU_ITEM_LIKE){
-//            Intent intent = new Intent(this, AddEditNoteActivity.class);
-//
-//            // Start AddEditNoteActivity, có phản hồi.
-//            this.startActivityForResult(intent, MY_REQUEST_CODE);
-//        }
-//
-//        return true;
-//    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo
+                info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        final SMS selectedNote = (SMS) this.lvSMS.getItemAtPosition(info.position);
+
+        if(item.getItemId() == MENU_ITEM_DELETE){
+            // Hỏi trước khi xóa.
+            new AlertDialog.Builder(this)
+                    .setMessage(selectedNote.getNContent() + ". Are you sure you want to delete?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            deleteSMS(selectedNote);
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }
+
+
+        return true;
+    }
+
+    // Người dùng đồng ý xóa một SMS.
+    private void deleteSMS(SMS sms)  {
+        MyDatabaseHelper db = new MyDatabaseHelper(this);
+        db.deleteSMS(sms);
+        this.arrSMS.remove(sms);
+        // Refresh ListView.
+        this.adapter.notifyDataSetChanged();
+    }
 }
