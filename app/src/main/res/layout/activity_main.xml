@@ -16,7 +16,7 @@
         <ImageButton
             android:layout_width="195dp"
             android:layout_height="102dp"
-            android:background="@drawable/NEW_sms1"
+            android:background="@drawable/sms"
             android:id="@+id/btnSMS"
             android:layout_gravity="center_horizontal"
             android:layout_x="90dp"
@@ -27,7 +27,7 @@
         <ImageButton
             android:layout_width="110dp"
             android:layout_height="58dp"
-            android:background="@drawable/NEW_story"
+            android:background="@drawable/story"
             android:id="@+id/imgb_main_chamngon"
             android:layout_gravity="center_horizontal"
             android:layout_x="184dp"
