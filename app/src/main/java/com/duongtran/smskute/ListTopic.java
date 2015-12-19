@@ -9,15 +9,19 @@ import android.widget.ImageButton;
 
 public class ListTopic extends AppCompatActivity {
 
-    Button btnRomantic  = null;
+    Button btnValentine  = null;
+    Button btnFavorite  = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_topic);
 
-        btnRomantic=(Button) findViewById(R.id.btn_romantic);
-        btnRomantic.setOnClickListener(new eventTopic());
+        btnValentine=(Button) findViewById(R.id.btn_Valentine);
+        btnValentine.setOnClickListener(new eventTopic());
+
+        btnFavorite=(Button) findViewById(R.id.btn_Favorite);
+        btnFavorite.setOnClickListener(new eventTopic());
     }
 
     private class eventTopic implements View.OnClickListener
@@ -25,17 +29,24 @@ public class ListTopic extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            Intent myIntent=new Intent(ListTopic.this, DetailSMS.class);
+            Bundle bundle=new Bundle();
             // TODO Auto-generated method stub
-            if(v.getId()==R.id.btn_romantic)
+            if(v.getId()==R.id.btn_Valentine)
             {
-                Intent myIntent=new Intent(ListTopic.this, DetailSMS.class);
+                String topic = "VLT";
+                bundle.putString("topic", topic);
+                myIntent.putExtra("MyTopic", bundle);
                 startActivity(myIntent);
             }
-//            else if(v.getId()==R.id.buttonShowAuthorList)
-//            {
-//                showAuthorList1();
-//            }
-//
+            else if(v.getId()==R.id.btn_Favorite)
+            {
+                String topic = "Favorite";
+                bundle.putString("topic", topic);
+                myIntent.putExtra("MyTopic", bundle);
+                startActivity(myIntent);
+            }
+
 //            else if(v.getId()==R.id.buttonInsertBook)
 //            {
 //                Intent intent=new Intent(MainActivity.this, InsertBookActivity.class);

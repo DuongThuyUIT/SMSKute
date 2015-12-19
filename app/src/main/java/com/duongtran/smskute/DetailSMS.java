@@ -29,6 +29,7 @@ public class DetailSMS extends Activity {
     ArrayList<SMS> arrSMS = new ArrayList<SMS>();
     ArrayAdapterSMS adapter=null;
     ListView lvSMS = null;
+    private boolean needRefresh;
 //    private ArrayAdapter<SMS> listViewAdapter;
 //    ListView lv = null;
     @Override
@@ -38,8 +39,18 @@ public class DetailSMS extends Activity {
 
         MyDatabaseHelper db = new MyDatabaseHelper(this);
         lvSMS = (ListView) findViewById(R.id.lvSMS);
-        String str = "VLT";
-        List<SMS> list=  db.getSMS(str);
+
+        Intent callerIntent = getIntent();
+        Bundle packageFromCaller = callerIntent.getBundleExtra("MyTopic");
+        String topic = packageFromCaller.getString("topic");
+
+        List<SMS> list = null;
+
+        if(topic.equals("Favorite"))
+            list =  db.getSMSLiked();
+        else
+            list =  db.getSMS(topic);
+
         this.arrSMS.addAll(list);
         //Khởi tạo đối tượng adapter và gán Data source
 
@@ -72,23 +83,28 @@ public class DetailSMS extends Activity {
         AdapterView.AdapterContextMenuInfo
                 info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
-        final SMS selectedNote = (SMS) this.lvSMS.getItemAtPosition(info.position);
+        final SMS selectedSMS = (SMS) this.lvSMS.getItemAtPosition(info.position);
 
         if(item.getItemId() == MENU_ITEM_DELETE){
             // Hỏi trước khi xóa.
             new AlertDialog.Builder(this)
-                    .setMessage(selectedNote.getNContent() + ". Are you sure you want to delete?")
+                    .setMessage(selectedSMS.getNContent() + ". Are you sure you want to delete?")
                     .setCancelable(false)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            deleteSMS(selectedNote);
+                            deleteSMS(selectedSMS);
                         }
                     })
                     .setNegativeButton("No", null)
                     .show();
         }
-
-
+        else
+        if(item.getItemId() == MENU_ITEM_LIKE){
+            MyDatabaseHelper db = new MyDatabaseHelper(this);
+            selectedSMS.setLiked(true);
+            db.updateSMS(selectedSMS);
+            this.needRefresh = true;
+        }
         return true;
     }
 

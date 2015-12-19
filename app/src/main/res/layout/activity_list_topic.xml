@@ -28,13 +28,13 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lãng mạn"
-                android:id="@+id/btn_romantic"/>
+                android:text="Valentine"
+                android:id="@+id/btn_Valentine"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hình Kute"
-                android:id="@+id/btn_imgkute"/>
+                android:text="Favorite"
+                android:id="@+id/btn_Favorite"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

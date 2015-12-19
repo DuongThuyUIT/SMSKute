@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "SQLite";
+    private static final String TAG = "daothuy";
 
 
     // Phiên bản
@@ -57,7 +57,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         String sqlSMS="create table tblSMS ("
                 +"id integer primary key autoincrement,"
                 +"content text, "
-                +"liked integer,"
+                +"liked boolean,"
                 +"topicId text not null constraint topicId references tblTopic(id) on delete cascade)";
         db.execSQL(sqlSMS);
     }
@@ -90,7 +90,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Topic topic7 = new Topic("TT", "Tỏ tình");
             Topic topic8 = new Topic("NM", "Năm mới");
             Topic topic9 = new Topic("CSN", "Chúc sinh nhật");
-            Topic topic10 = new Topic("CTT", "Chúc thi tốt");
             this.addTopic(topic1);
             this.addTopic(topic2);
             this.addTopic(topic3);
@@ -101,7 +100,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             this.addTopic(topic7);
             this.addTopic(topic8);
             this.addTopic(topic9);
-            this.addTopic(topic10);
         }
     }
 
@@ -142,10 +140,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void createDefaultSMSIfNeed()  {
         int count = this.getSMSCount();
         if(count == 0 ) {
-            SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhật", "VLT", false);
+            SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhật", "VLT", true);
             SMS sms2 = new SMS("Chúng ta đã cùng vượt qua những khoảng thời gian khó khn, em yêu. Trong ngày đặc biệt hôm nay. Anh chỉ muốn cho tất cả mọi người biết rằng: em là duy nhất của anh... Anh yêu em rất nhiều", "VLT", false);
             SMS sms3 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "GS", false);
-            SMS sms4 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "CSN", false);
+            SMS sms4 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "CSN", true);
+
             this.addSMS(sms1);
             this.addSMS(sms2);
             this.addSMS(sms3);
@@ -241,6 +240,36 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         // return note list
         return smsList;
     }
+
+    public List<SMS> getSMSLiked() {
+        Log.i(TAG, "MyDatabaseHelper.getSMSLiked ... " );
+
+        List<SMS> smsList = new ArrayList<SMS>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_SMS + " WHERE liked = 1";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        // Duyệt trên con trỏ, và thêm vào danh sách.
+        if (cursor.moveToFirst()) {
+            do {
+                SMS sms = new SMS();
+                sms.setId(Integer.parseInt(cursor.getString(0)));
+                sms.setContent(cursor.getString(1));
+                sms.setLiked(Boolean.parseBoolean(cursor.getString(2)));
+                sms.setTopicId(cursor.getString(3));
+
+                // Thêm vào danh sách.
+                smsList.add(sms);
+            } while (cursor.moveToNext());
+        }
+
+        // return note list
+        return smsList;
+    }
+
 
 //
 //
