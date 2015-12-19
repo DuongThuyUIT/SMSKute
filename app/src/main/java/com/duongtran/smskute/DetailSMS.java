@@ -1,11 +1,14 @@
 package com.duongtran.smskute;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -54,7 +57,7 @@ public class DetailSMS extends Activity {
                                     ContextMenu.ContextMenuInfo menuInfo)    {
 
         super.onCreateContextMenu(menu, view, menuInfo);
-//        menu.setHeaderTitle("Select The Action");
+        menu.setHeaderTitle("Select The Action");
 
         // groupId, itemId, order, title
         menu.add(0, MENU_ITEM_SENT , 0, "Sent");
@@ -63,4 +66,24 @@ public class DetailSMS extends Activity {
         menu.add(0, MENU_ITEM_EDIT, 3, "Edit");
         menu.add(0, MENU_ITEM_DELETE, 4, "Delete");
     }
+
+//    @Override
+//    public boolean onContextItemSelected(MenuItem item){
+//        AdapterView.AdapterContextMenuInfo
+//                info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//
+//        final SMS selectedNote = (SMS) this.lvSMS.getItemAtPosition(info.position);
+//
+//        if(item.getItemId() == MENU_ITEM_SENT){
+//            Toast.makeText(getApplicationContext(),selectedNote.getNoteContent(),Toast.LENGTH_LONG).show();
+//        }
+//        else if(item.getItemId() == MENU_ITEM_LIKE){
+//            Intent intent = new Intent(this, AddEditNoteActivity.class);
+//
+//            // Start AddEditNoteActivity, có phản hồi.
+//            this.startActivityForResult(intent, MY_REQUEST_CODE);
+//        }
+//
+//        return true;
+//    }
 }
