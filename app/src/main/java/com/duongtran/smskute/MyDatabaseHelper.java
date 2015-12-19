@@ -291,21 +291,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 //    }
 //
 //
-//
-//
-//    public int updateNote(Note note) {
-//        Log.i(TAG, "MyDatabaseHelper.updateNote ... "  + note.getNoteTitle());
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
-//        values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
-//
-//        // updating row
-//        return db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?",
-//                new String[]{String.valueOf(note.getNoteId())});
-//    }
+    public int updateSMS(SMS sms) {
+        Log.i(TAG, "MyDatabaseHelper.updateSMS ... "  + sms.getId());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SMS_CONTENT, sms.getContent());
+        values.put(COLUMN_SMS_LIKED, sms.isLiked());
+        values.put(COLUMN_SMS_TOPICID, sms.getTopicId());
+
+        // updating row
+        return db.update(TABLE_SMS, values, COLUMN_SMS_ID + " = ?",
+                new String[]{String.valueOf(sms.getId())});
+    }
 //
     public void deleteSMS(SMS sms) {
         Log.i(TAG, "MyDatabaseHelper.updateSMS ... " + sms.getId() );
@@ -315,4 +314,5 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(sms.getId()) });
         db.close();
     }
+
 }
