@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,7 @@ public class DetailSMS extends Activity {
         else
             list =  db.getSMS(topic);
         if(list.size() == 0){
-            Toast toast=Toast.makeText(this, "Chủ đề này chưa có SMS nào nhé bợn!",   Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Chủ đề này chưa có SMS nào nhé bợn!",   Toast.LENGTH_SHORT);
             toast.show();
         }
         else {
