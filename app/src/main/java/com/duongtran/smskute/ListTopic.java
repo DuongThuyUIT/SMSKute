@@ -36,10 +36,10 @@ public class ListTopic extends AppCompatActivity {
         Bitmap _20_10 = BitmapFactory.decodeResource(this.getResources(), R.drawable._20_10);
         Bitmap _08_03 = BitmapFactory.decodeResource(this.getResources(), R.drawable._08_03);
         Bitmap night = BitmapFactory.decodeResource(this.getResources(), R.drawable.night);
-        Bitmap goodLuck = BitmapFactory.decodeResource(this.getResources(), R.drawable.goodluck);
+        Bitmap goodLuck = BitmapFactory.decodeResource(this.getResources(), R.drawable.goodluck_1);
         Bitmap favorite = BitmapFactory.decodeResource(this.getResources(), R.drawable.favorite);
         Bitmap greeting = BitmapFactory.decodeResource(this.getResources(), R.drawable.greeting);
-        Bitmap newYear = BitmapFactory.decodeResource(this.getResources(), R.drawable.newyear);
+        Bitmap newYear = BitmapFactory.decodeResource(this.getResources(), R.drawable.newyear_1);
         Bitmap birthday = BitmapFactory.decodeResource(this.getResources(), R.drawable.birthday);
         Bitmap love = BitmapFactory.decodeResource(this.getResources(), R.drawable.love);
 
