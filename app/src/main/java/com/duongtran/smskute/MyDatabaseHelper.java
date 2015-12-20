@@ -81,15 +81,17 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void createDefaultTopicsIfNeed()  {
         int count = this.getTopicsCount();
         if(count == 0 ) {
-            Topic topic1 = new Topic("VLT", "Valentine");
-            Topic topic2 = new Topic("GS", "Giáng sinh");
+            Topic topic1 = new Topic("VlT", "Valentine");
+            Topic topic2 = new Topic("CH", "Christmas");
             Topic topic3 = new Topic("2010", "20-10");
             Topic topic4 = new Topic("83", "8-3");
-            Topic topic5 = new Topic("CNN", "Chúc ngủ ngon");
-            Topic topic6 = new Topic("CBS", "Chào buổi sáng");
-            Topic topic7 = new Topic("TT", "Tỏ tình");
-            Topic topic8 = new Topic("NM", "Năm mới");
-            Topic topic9 = new Topic("CSN", "Chúc sinh nhật");
+            Topic topic5 = new Topic("GN", "Good Night");
+            Topic topic6 = new Topic("GR", "Greeting");
+            Topic topic7 = new Topic("LO", "Love");
+            Topic topic8 = new Topic("NY", "New year");
+            Topic topic9 = new Topic("BD", "Birthday");
+            Topic topic10 = new Topic("GL", "Good luck");
+            Topic topic11 = new Topic("HP", "Happy");
             this.addTopic(topic1);
             this.addTopic(topic2);
             this.addTopic(topic3);
@@ -100,6 +102,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             this.addTopic(topic7);
             this.addTopic(topic8);
             this.addTopic(topic9);
+            this.addTopic(topic10);
+            this.addTopic(topic11);
         }
     }
 
@@ -142,13 +146,35 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         if(count == 0 ) {
             SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhật", "VLT", true);
             SMS sms2 = new SMS("Chúng ta đã cùng vượt qua những khoảng thời gian khó khn, em yêu. Trong ngày đặc biệt hôm nay. Anh chỉ muốn cho tất cả mọi người biết rằng: em là duy nhất của anh... Anh yêu em rất nhiều", "VLT", false);
-            SMS sms3 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "GS", false);
-            SMS sms4 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "CSN", true);
+            SMS sms3 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "CH", false);
+            SMS sms4 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "BD", true);
 
+            SMS sms5 = new SMS("__i_i_i_i_i_i_i_i__\n" +
+            "            __[¸.·´¯`·☆·´¯`·.¸]__\n" +
+            "                    [.¸.·´¯`04- 5´¯`·.¸.]\n" +
+            "            |_______ღ.ღ_______|\n" +
+            "            ::..̾.۰.Happy.۰.̾..::\n" +
+            "            ::_.۰.Birth Day.۰._::\n" +
+            "            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n" +
+            "            Sinh nhật Vui vẻ !", "BD", false);
+
+            SMS sms6 = new SMS(" +\"\"-.,_,.-\"\"+.\n" +
+                    "            ; #\"-.Happy_.-\"#\n" +
+                    "            *'+. New +\"+*\n" +
+                    "                    +-.Year.-+\n" +
+                    "                    \"-._.-\"\n" +
+                    "            \"-..-*\"-..2016.-*\"-..-\"\n" +
+                    "            Cung chúc tân niên,\n" +
+                    "            Sức khỏe vô biên, thành công liên miên,\n" +
+                    "                    hạnh phúc triền miên, túi luôn đầy tiền,\n" +
+                    "                    sung sướng như tiên.Chúc mừng năm mới.\n" +
+                    "            !", "NY", false);
             this.addSMS(sms1);
             this.addSMS(sms2);
             this.addSMS(sms3);
             this.addSMS(sms4);
+            this.addSMS(sms5);
+            this.addSMS(sms6);
         }
     }
 

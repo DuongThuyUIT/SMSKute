@@ -2,6 +2,8 @@ package com.duongtran.smskute;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -50,17 +52,23 @@ public class DetailSMS extends Activity {
             list =  db.getSMSLiked();
         else
             list =  db.getSMS(topic);
+        if(list.size() == 0){
+            Toast toast=Toast.makeText(this, "Chủ đề này chưa có SMS nào nhé bợn!",   Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            this.arrSMS.addAll(list);
+            //Khởi tạo đối tượng adapter và gán Data source
+            adapter = new ArrayAdapterSMS(
+                    this,
+                    R.layout.item_sms,// lấy custom layout
+                    arrSMS/*thiết lập data source*/);
+            lvSMS.setAdapter(adapter);//gán
 
-        this.arrSMS.addAll(list);
-        //Khởi tạo đối tượng adapter và gán Data source
+            registerForContextMenu(this.lvSMS);
+        }
 
-        adapter = new ArrayAdapterSMS(
-                this,
-                R.layout.item_sms,// lấy custom layout
-                arrSMS/*thiết lập data source*/);
-        lvSMS.setAdapter(adapter);//gán
 
-        registerForContextMenu(this.lvSMS);
     }
 
     @Override
@@ -105,11 +113,19 @@ public class DetailSMS extends Activity {
             db.updateSMS(selectedSMS);
             this.needRefresh = true;
         }
+        else
+        if(item.getItemId() == MENU_ITEM_SHARE){
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, selectedSMS.getContent());
+            ((ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE)).setText(selectedSMS.getContent());
+            startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        }
         return true;
     }
 
     // Người dùng đồng ý xóa một SMS.
-    private void deleteSMS(SMS sms)  {
+    private void deleteSMS(SMS sms) {
         MyDatabaseHelper db = new MyDatabaseHelper(this);
         db.deleteSMS(sms);
         this.arrSMS.remove(sms);
