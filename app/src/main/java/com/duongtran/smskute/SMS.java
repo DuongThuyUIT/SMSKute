@@ -10,8 +10,15 @@ public class SMS implements Serializable {
     private String content;
     private boolean liked;
     private String topicId;
+    //private String title;
 
     public SMS()  {}
+
+    //public SMS( String title, String content) {
+    public SMS(  String content) {
+       // this.title= title;
+        this.content= content;
+    }
 
     public SMS( String content, String topicId, boolean liked) {
         this.setContent(content);
@@ -26,6 +33,8 @@ public class SMS implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
+
 
     public String getContent() {
         return content;
@@ -58,4 +67,13 @@ public class SMS implements Serializable {
     public String toString() {
         return this.content;
     }
+
+ //   public String getTitle() {
+   //     return title;
+   // }
+
+   // public void settitle(String title) {
+  //      this.title = title;
+   // }
+
 }

@@ -29,7 +29,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "DB_SMS";
 
 
-    // Tên bảng: Note.
+    // Tên bảng: SMS.
     private static final String TABLE_TOPIC = "tblTopic";
     private static final String TABLE_SMS = "tblSMS";
 
@@ -54,7 +54,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 +"id text primary key ,"
                 +"topicName text)";
         db.execSQL(sqlTopic);
-        String sqlSMS="create table tblSMS ("
+
+        String sqlSMS
+                ="create table tblSMS ("
                 +"id integer primary key autoincrement,"
                 +"content text, "
                 +"liked boolean,"
@@ -240,6 +242,36 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         // return note list
         return smsList;
     }
+
+    ///SMS
+    public List<SMS> getAllSMS() {
+        Log.i(TAG, "MyDatabaseHelper.getAllSMS ... " );
+
+        List<SMS> SMSList = new ArrayList<SMS>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_SMS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        // Duyệt trên con trỏ, và thêm vào danh sách.
+        if (cursor.moveToFirst()) {
+            do {
+                SMS sms = new SMS();
+                sms.setId(Integer.parseInt(cursor.getString(0)));
+
+                sms.setContent(cursor.getString(1));
+                sms.setLiked(Boolean.parseBoolean(cursor.getString(2)));
+                sms.setTopicId(cursor.getString(3));
+                // Thêm vào danh sách.
+                SMSList.add(sms);
+            } while (cursor.moveToNext());
+        }
+
+        // return note list
+        return SMSList;
+    } //end sms
 
     public List<SMS> getSMSLiked() {
         Log.i(TAG, "MyDatabaseHelper.getSMSLiked ... " );
