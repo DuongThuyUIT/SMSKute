@@ -68,37 +68,10 @@ public class ListTopic extends AppCompatActivity {
                 Bundle bundle=new Bundle();
                 TextView text = (TextView) v.findViewById(R.id.item_text);
                 String topic = text.getText().toString();
-                String topicId = null;
-                if(topic.equals("Valentine"))
-                    topicId = "VLT";
-                else if(topic.equals("Christmas"))
-                    topicId = "CH";
-                else if(topic.equals("20-10"))
-                    topicId = "2010";
-                else if(topic.equals("08-03"))
-                    topicId = "83";
-                else if(topic.equals("Good Night"))
-                    topicId = "GN";
-                else if(topic.equals("Favorite"))
-                    topicId = "Favorite";
-                else if(topic.equals("Greeting"))
-                    topicId = "GR";
-                else if(topic.equals("Love"))
-                    topicId = "LO";
-                else if(topic.equals("New Year"))
-                    topicId = "NY";
-                else if(topic.equals("Birthday"))
-                    topicId = "BD";
-                else if(topic.equals("Good Luck"))
-                    topicId = "GL";
-                else if(topic.equals("Happy"))
-                    topicId = "HP";
 
-                bundle.putString("topic", topicId);
+                bundle.putString("topic", topic);
                 myIntent.putExtra("MyTopic", bundle);
                 startActivity(myIntent);
-
-
             }
         });
 

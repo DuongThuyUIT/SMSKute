@@ -24,6 +24,9 @@ public class MainActivity extends Activity {
         btnSMS=(ImageButton) findViewById(R.id.btnSMS);
         btnSMS.setOnClickListener(new MyEvent());
 
+        Intent myIntent = new Intent(MainActivity.this, PlaySongService.class);
+        this.startService(myIntent);
+
     }
 
     private class MyEvent implements View.OnClickListener
@@ -51,4 +54,26 @@ public class MainActivity extends Activity {
         }
 
     }
+
+//    @Override
+//    protected void onPause(){
+//        super.onPause();
+//        Intent myIntent = new Intent(MainActivity.this, PlaySongService.class);
+//        this.stopService(myIntent);
+//        finish();
+//    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Intent myIntent = new Intent(MainActivity.this, PlaySongService.class);
+//        this.stopService(myIntent);
+//    }
+
+//    @Override
+//    protected void onDestroy() {
+//        Intent myIntent = new Intent(MainActivity.this, PlaySongService.class);
+//        this.stopService(myIntent);
+//        super.onDestroy();
+//    }
 }

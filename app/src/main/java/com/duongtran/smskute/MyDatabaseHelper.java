@@ -146,12 +146,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void createDefaultSMSIfNeed()  {
         int count = this.getSMSCount();
         if(count == 0 ) {
-            SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhậtChúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhật", "VLT", true);
-            SMS sms2 = new SMS("Chúng ta đã cùng vượt qua những khoảng thời gian khó khn, em yêu. Trong ngày đặc biệt hôm nay. Anh chỉ muốn cho tất cả mọi người biết rằng: em là duy nhất của anh... Anh yêu em rất nhiều", "VLT", false);
-            SMS sms3 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "CH", false);
-            SMS sms4 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "BD", true);
+            SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhất.", "VLT", true);
+            SMS sms2 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "CH", false);
+            SMS sms3 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "BD", true);
 
-            SMS sms5 = new SMS("__i_i_i_i_i_i_i_i__\n" +
+            SMS sms4 = new SMS("__i_i_i_i_i_i_i_i__\n" +
             "            __[¸.·´¯`·☆·´¯`·.¸]__\n" +
             "                    [.¸.·´¯`04- 5´¯`·.¸.]\n" +
             "            |_______ღ.ღ_______|\n" +
@@ -160,7 +159,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             "            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n" +
             "            Sinh nhật Vui vẻ !", "BD", false);
 
-            SMS sms6 = new SMS(" +\"\"-.,_,.-\"\"+.\n" +
+            SMS sms5 = new SMS(" +\"\"-.,_,.-\"\"+.\n" +
                     "            ; #\"-.Happy_.-\"#\n" +
                     "            *'+. New +\"+*\n" +
                     "                    +-.Year.-+\n" +
@@ -170,13 +169,52 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     "            Sức khỏe vô biên, thành công liên miên,\n" +
                     "                    hạnh phúc triền miên, túi luôn đầy tiền,\n" +
                     "                    sung sướng như tiên.Chúc mừng năm mới.\n" +
-                    "            !", "NY", false);
+                    "            !", "NY", true);
+            SMS sms6 = new SMS("Nhân ngày Phụ nữ Việt Nam, anh và con chúc em luôn luôn mạnh khỏe, vui vẻ và... ăn khỏe. Vợ ơi! Cố gắng ăn nhiều vào nhé! Yêu vợ nhiều lắm. Cảm ơn vợ đã vất vả vì bố con anh!", "2010", true);
+            SMS sms7 = new SMS("Nhân ngày 8-3 con chúc mẹ nhiều sức khỏe và nụ cười luôn nở trên môi mẹ. Con ở xa mẹ quá, nên không thể chăm sóc cho mẹ được. Mẹ nhớ giữ gìn sức khỏe! Mong cho mọi điều tốt lành sẽ đến với mẹ! Con yêu mẹ!", "83", true);
+            SMS sms8 = new SMS("Chúc người ju bé nhỏ của anh ngủ thật ngoan cho ….. cả thế giới đc yên.", "GN", true);
+            SMS sms9 = new SMS("Nắng buổi sáng ấm áp và ông mặt trời đang mỉm cười! Em chúc anh buổi sáng tốt lành, một ngày thật tuyệt và làm việc hiệu quả nhé! Bx nhớ Ox.", "GR", true);
+            SMS sms10 = new SMS("Nhận được tin này là em đã nợ anh một cuộc hẹn\n" +
+                    "Xóa đi là em nợ anh một cuộc tình\n" +
+                    "Trả lời là em nợ anh tất cả,\n" +
+                    "Không trả lời là em đã..”yêu anh", "LO", true);
+            SMS sms11 = new SMS(" \n" +
+                    "      _(^_^)  .   (^.^)_ \n" +
+                    "     ,/| |\\, *   ,/| |\\,\n" +
+                    "      /  \\ . * .  /  \\\n" +
+                    "     ,/. .\\, *   ,/ . \\,\n" +
+                    "YOU & ME\n" +
+                    "CHUNG MINH CUNG VAO DAI HOC NHA!\n" +
+                    "HÃY CỐ LÊN! ", "GL", true);
+            SMS sms12 = new SMS("Anh đợi em lâu chưa?\n" +
+                    "– hơn 20 năm rồi em à\n" +
+                    "Gấu: em yêu anh\n" +
+                    "Mình: anh cũng thế\n" +
+                    "Gấu: thế là anh cũng yêu em ah?\n" +
+                    "Mình: ko anh cũng yêu anh )", "HP", true);
+            SMS sms13 = new SMS("Trêu gấu, ai ngờ bị trêu lại\n" +
+                    "-Em, biết em khác con bò ở điểm nào không\n" +
+                    "-Dạ không biết.\n" +
+                    "-Em đi 2 chân còn bò đi 4 chân.\n" +
+                    "Gấu vặn lại\n" +
+                    "-Còn anh, anh biết anh khác con bò ở điểm nào không.\n" +
+                    "-Anh không biết\n" +
+                    "-Đúng rồi, vì anh chẳng khác gì con bò cả\n" +
+                    "\n", "HP", true);
+
             this.addSMS(sms1);
             this.addSMS(sms2);
             this.addSMS(sms3);
             this.addSMS(sms4);
             this.addSMS(sms5);
             this.addSMS(sms6);
+            this.addSMS(sms7);
+            this.addSMS(sms8);
+            this.addSMS(sms9);
+            this.addSMS(sms10);
+            this.addSMS(sms11);
+            this.addSMS(sms13);
+
         }
     }
 
