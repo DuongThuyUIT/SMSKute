@@ -334,7 +334,7 @@ public class DetailSMS extends TabActivity {
         menu.setHeaderTitle("Select The Action");
 
         // groupId, itemId, order, title
-        menu.add(0, MENU_ITEM_SENT , 0, "Sent");
+        menu.add(0, MENU_ITEM_SENT , 0, "Send");
         menu.add(0, MENU_ITEM_LIKE, 1, "Like");
         menu.add(0, MENU_ITEM_SHARE , 2, "Share");
         menu.add(0, MENU_ITEM_EDIT, 3, "Edit");
@@ -428,6 +428,15 @@ public class DetailSMS extends TabActivity {
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, selectedSMS.getContent());
             ((ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE)).setText(selectedSMS.getContent());
             startActivity(Intent.createChooser(sharingIntent, "Share using"));
+        }
+        else
+        if(item.getItemId() == MENU_ITEM_SENT ){
+            Intent sendintent = new Intent(Intent.ACTION_SEND);
+            sendintent.setType("text/plain");
+            String stringtoshare = selectedSMS.getContent();
+            sendintent.putExtra(Intent.EXTRA_TEXT, stringtoshare );
+            this.startActivity(Intent.createChooser(sendintent, "share via"));
+
         }
         return true;
     }

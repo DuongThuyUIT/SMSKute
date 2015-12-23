@@ -15,6 +15,11 @@
         <activity android:name=".ListTopic" >
         </activity>
         <activity android:name=".DetailSMS" >
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
         </activity>
         <activity android:name=".AddEditSmsAtivity" >
         </activity>
