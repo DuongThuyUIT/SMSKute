@@ -16,6 +16,8 @@
         </activity>
         <activity android:name=".DetailSMS" >
         </activity>
+        <activity android:name=".AddEditSmsAtivity" >
+        </activity>
 
         <service
             android:name=".PlaySongService"

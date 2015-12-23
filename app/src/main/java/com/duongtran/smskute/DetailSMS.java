@@ -1,5 +1,6 @@
 package com.duongtran.smskute;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.TabActivity;
@@ -9,6 +10,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,6 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DetailSMS extends TabActivity {
+
+    private static final String TAG = "daothuy";
     TabHost tabHost;
     private static final int MENU_ITEM_SENT = 111;
     private static final int MENU_ITEM_LIKE = 222;
@@ -173,6 +178,75 @@ public class DetailSMS extends TabActivity {
         registerForContextMenu(this.lvSMSFavorite);
 
         tabHost = getTabHost();
+//
+
+
+//        tabHost = (TabHost) findViewById
+//                (android.R.id.tabhost);
+//        tabHost.setup();
+////        tabHost.setup();
+//        TabHost.TabSpec spec;
+//
+//        spec=tabHost.newTabSpec("t1");
+//        spec.setContent(R.id.tab1);
+//        spec.setIndicator("1-Calculator");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t2");
+//        spec.setContent(R.id.tab2);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t3");
+//        spec.setContent(R.id.tab3);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t4");
+//        spec.setContent(R.id.tab4);
+//        spec.setIndicator("1-Calculator");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t5");
+//        spec.setContent(R.id.tab5);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t6");
+//        spec.setContent(R.id.tab6);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t7");
+//        spec.setContent(R.id.tab7);
+//        spec.setIndicator("1-Calculator");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t8");
+//        spec.setContent(R.id.tab8);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t9");
+//        spec.setContent(R.id.tab9);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t10");
+//        spec.setContent(R.id.tab10);
+//        spec.setIndicator("1-Calculator");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t11");
+//        spec.setContent(R.id.tab11);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+//
+//        spec=tabHost.newTabSpec("t12");
+//        spec.setContent(R.id.tab12);
+//        spec.setIndicator("2-History");
+//        tabHost.addTab(spec);
+
 
         this.setNewTab(this, tabHost, "tab1", R.string.tab1, R.drawable.valentine, R.id.tab1);
         this.setNewTab(this, tabHost, "tab2", R.string.tab2, R.drawable.christmas, R.id.tab2);
@@ -186,6 +260,9 @@ public class DetailSMS extends TabActivity {
         this.setNewTab(this, tabHost, "tab10", R.string.tab10, R.drawable.greeting, R.id.tab10);
         this.setNewTab(this, tabHost, "tab11", R.string.tab11, R.drawable.newyear_1, R.id.tab11);
         this.setNewTab(this, tabHost, "tab12", R.string.tab12, R.drawable.birthday, R.id.tab12);
+
+
+
 
         Intent callerIntent = getIntent();
         Bundle packageFromCaller = callerIntent.getBundleExtra("MyTopic");
@@ -327,15 +404,14 @@ public class DetailSMS extends TabActivity {
         else
         if(item.getItemId() == MENU_ITEM_CREATE){
             Intent intent = new Intent(this, AddEditSmsAtivity.class);
-
-            // Start AddEditNoteActivity, có phản hồi.
+            intent.putExtra("curTab", curTab);
             this.startActivityForResult(intent, MY_REQUEST_CODE);
+
         }
         else if(item.getItemId() == MENU_ITEM_EDIT ){
             Intent intent = new Intent(this, AddEditSmsAtivity.class);
             intent.putExtra("sms", selectedSMS);
-
-            // Start AddEditNoteActivity, có phản hồi.
+            intent.putExtra("curTab", curTab);
             this.startActivityForResult(intent,MY_REQUEST_CODE);
         }
         else
@@ -434,12 +510,91 @@ public class DetailSMS extends TabActivity {
             boolean needRefresh = data.getBooleanExtra("needRefresh",true);
             // Refresh ListView
             if(needRefresh) {
-                this.SMSList.clear();
                 MyDatabaseHelper db = new MyDatabaseHelper(this);
-                List<SMS> list=  db.getAllSMS();
-                this.SMSList.addAll(list);
-                // Thông báo dữ liệu thay đổi (Để refresh ListView).
-                this.listViewAdapter.notifyDataSetChanged();
+                int curTab = tabHost.getCurrentTab();
+                List<SMS> list;
+
+                switch(curTab)
+                {
+                    case 0 :
+                        this.arrSMSValentine.clear();
+                        list =  db.getSMS("VLT");
+                        this.arrSMSValentine.addAll(list);
+                        this.adapterValentine.notifyDataSetChanged();
+                        break;
+                    case 1 :
+                        this.arrSMSChristmas.clear();
+                        list =  db.getSMS("CH");
+                        this.arrSMSChristmas.addAll(list);
+                        this.adapterChristmas.notifyDataSetChanged();
+                        break;
+                    case 2 :
+                        this.arrSMS2010.clear();
+                        list =  db.getSMS("2010");
+                        this.arrSMS2010.addAll(list);
+                        this.adapter2010.notifyDataSetChanged();
+                        break;
+                    case 3 :
+                        this.arrSMS0803.clear();
+                        list =  db.getSMS("83");
+                        this.arrSMS0803.addAll(list);
+                        this.adapter0803.notifyDataSetChanged();
+                        break;
+                    case 4 :
+                        this.arrSMSGoodNight.clear();
+                        list =  db.getSMS("GN");
+                        this.arrSMSGoodNight.addAll(list);
+                        this.adapterGoodNight.notifyDataSetChanged();
+                        break;
+                    case 5 :
+                        this.arrSMSLove.clear();
+                        list =  db.getSMS("LO");
+                        this.arrSMSLove.addAll(list);
+                        this.adapterLove.notifyDataSetChanged();
+                        break;
+                    case 6 :
+                        this.arrSMSLove.clear();
+                        list =  db.getSMS("GL");
+                        this.arrSMSLove.addAll(list);
+                        this.adapterGoodLuck.notifyDataSetChanged();
+                        break;
+                    case 7 :
+                        this.arrSMSHappy.clear();
+                        list =  db.getSMS("HP");
+                        this.arrSMSHappy.addAll(list);
+                        this.adapterHappy.notifyDataSetChanged();
+                        break;
+                    case 8 :
+                        this.arrSMSFavorite.clear();
+                        list =  db.getSMSLiked();
+                        this.arrSMSFavorite.addAll(list);
+                        this.adapterFavorite.notifyDataSetChanged();
+                        break;
+                    case 9 :
+                        this.arrSMSGreeting.clear();
+                        list =  db.getSMS("GR");
+                        this.arrSMSGreeting.addAll(list);
+                        this.adapterGreeting.notifyDataSetChanged();
+                        break;
+                    case 10 :
+                        this.arrSMSNewYear.clear();
+                        list =  db.getSMS("NY");
+                        this.arrSMSNewYear.addAll(list);
+                        this.adapterNewYear.notifyDataSetChanged();
+                        break;
+                    default :
+                        this.arrSMSBirthday.clear();
+                        list =  db.getSMS("BD");
+                        this.arrSMSBirthday.addAll(list);
+                        this.adapterBirthday.notifyDataSetChanged();
+                }
+
+
+//                this.SMSList.clear();
+//                MyDatabaseHelper db = new MyDatabaseHelper(this);
+//                List<SMS> list=  db.getAllSMS();
+//                this.SMSList.addAll(list);
+//                this.listViewAdapter.notifyDataSetChanged();
             }
         }
     }

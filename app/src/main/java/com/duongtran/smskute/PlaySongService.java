@@ -25,7 +25,7 @@ public class PlaySongService extends Service {
     public void onCreate(){
         super.onCreate();
         // Tạo đối tượng MediaPlayer, chơi file nhạc của bạn.
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.meoitaisao);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.mylove);
         mediaPlayer.setLooping(true);
 //        mediaPlayer.setVolume(100, 100);
     }

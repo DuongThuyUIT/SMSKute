@@ -41,7 +41,7 @@ public class SMS implements Serializable {
     }
 
     public String getNContent() {
-        return "'" + content.substring(0,20) + "..." + "'";
+        return "'" + content.substring(0,3) + "..." + "'";
     }
 
     public void setContent(String content) {

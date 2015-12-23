@@ -42,7 +42,7 @@ public class Main2Activity extends Activity {
         @Override
         public void run(){
             // xử lý công việc cần hoàn thành
-            for(int i =0; i< 5; i++){
+            for(int i = 0; i< 2; i++){
                 // Tạm dừng 1s, thực tế thì chỗ này là xử lý công việc
                 try {
                     Thread.sleep(1000);
@@ -52,7 +52,7 @@ public class Main2Activity extends Activity {
                 }
 
                 // tính xem công việc đã hoàn thành bao nhiêu phần trăm và đưa lên progressbar
-                progressBar.setProgress((i * 100) / 5);
+                progressBar.setProgress((i * 100) / 2);
             }
             // đóng brogressbar.
             progressBar.dismiss();

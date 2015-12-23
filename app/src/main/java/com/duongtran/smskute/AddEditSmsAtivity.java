@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class AddEditSmsAtivity extends AppCompatActivity {
 
     SMS sms;
+    int curTab;
     private static final int MODE_CREATE = 1;
     private static final int MODE_EDIT = 2;
     private static final String TAG = "daothuy";
@@ -32,6 +33,7 @@ public class AddEditSmsAtivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         this.sms = (SMS) intent.getSerializableExtra("sms");
+        curTab = (int) intent.getSerializableExtra("curTab");
         if(sms == null)  {
             this.mode = MODE_CREATE;
         } else  {
@@ -57,8 +59,44 @@ public class AddEditSmsAtivity extends AppCompatActivity {
         }
 
         if(mode==MODE_CREATE ) {
-            //this.sms= new SMS(title, content);
-            this.sms= new SMS(content, "VLT", false);
+            switch(curTab)
+            {
+                case 0 :
+                    this.sms= new SMS(content, "VLT", false);
+                    break;
+                case 1 :
+                    this.sms= new SMS(content, "CH", false);
+                    break;
+                case 2 :
+                    this.sms= new SMS(content, "2010", false);
+                    break;
+                case 3 :
+                    this.sms= new SMS(content, "83", false);
+                    break;
+                case 4 :
+                    this.sms= new SMS(content, "GN", false);
+                    break;
+                case 5 :
+                    this.sms= new SMS(content, "LO", false);
+                    break;
+                case 6 :
+                    this.sms= new SMS(content, "GL", false);
+                    break;
+                case 7 :
+                    this.sms= new SMS(content, "HP", false);
+                    break;
+                case 8 :
+                    this.sms= new SMS(content, "NY", false);
+                    break;
+                case 9 :
+                    this.sms= new SMS(content, "BD", false);
+                    break;
+                case 10 :
+                    this.sms= new SMS(content, "NY", false);
+                    break;
+                default :
+                    this.sms= new SMS(content, "VLT", true);
+            }
             db.addSMS(sms);
         } else  {
            // this.sms.settitle(title);
