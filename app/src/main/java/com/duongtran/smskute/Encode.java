@@ -21,12 +21,11 @@ public class Encode extends AppCompatActivity {
     EditText txt;
     EditText key;
     EditText txtResult;
+    String SMSEncode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encode);
-
-
 
         btnEncrypt = (Button) findViewById(R.id.btnEncrypt);
         btnEncrypt.setOnClickListener(new MyEvent());
@@ -37,8 +36,19 @@ public class Encode extends AppCompatActivity {
         btnCopy = (Button) findViewById(R.id.btnCopy);
         btnCopy.setOnClickListener(new MyEvent());
 
+        txt = (EditText) findViewById(R.id.text);
+//        Intent intent = this.getIntent();
+//        SMSEncode = (String) intent.getSerializableExtra("SMSEncode");
+//        if(SMSEncode != null){
+//            txt.setText(SMSEncode);
+//        }
 
-
+        Intent callerIntent=getIntent();
+        Bundle packageFromCaller = callerIntent.getBundleExtra("SMSEncode");
+        //Có Bundle rồi thì lấy các thông số dựa vào soa, sob
+        String SMSContent = packageFromCaller.getString("SMSContent");
+        if(SMSContent != null)
+            txt.setText(packageFromCaller.getString("SMSContent"));
     }
 
     private class MyEvent implements View.OnClickListener

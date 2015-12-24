@@ -32,6 +32,7 @@ public class DetailSMS extends TabActivity {
     private static final int MENU_ITEM_EDIT = 444;
     private static final int MENU_ITEM_DELETE = 555;
     private static final int MENU_ITEM_CREATE = 666;
+    private static final int MENU_ITEM_ENCODE = 777;
 
     private static final int MY_REQUEST_CODE = 1000;//D
 
@@ -263,6 +264,7 @@ public class DetailSMS extends TabActivity {
         menu.add(0, MENU_ITEM_EDIT, 3, "Edit");
         menu.add(0, MENU_ITEM_DELETE, 4, "Delete");
         menu.add(0, MENU_ITEM_CREATE, 5, "Create");
+        menu.add(0, MENU_ITEM_ENCODE, 6, "Encode");
     }
 
     @Override
@@ -364,6 +366,15 @@ public class DetailSMS extends TabActivity {
             sendIntent.setType("vnd.android-dir/mms-sms");
             this.startActivity(sendIntent);
 
+        }
+        else
+        if(item.getItemId() == MENU_ITEM_ENCODE){
+            String content = selectedSMS.getContent();
+            Intent intent = new Intent(this, Encode.class);
+            Bundle bundle=new Bundle();
+            bundle.putString("contentEncode", content);
+            intent.putExtra("SMSEncode", bundle);
+            this.startActivity(intent);
         }
         return true;
     }
