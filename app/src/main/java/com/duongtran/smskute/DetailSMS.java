@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -26,6 +27,9 @@ public class DetailSMS extends TabActivity {
 
     private static final String TAG = "daothuy";
     TabHost tabHost;
+
+    ImageButton imgbHome = null;
+
     private static final int MENU_ITEM_SENT = 111;
     private static final int MENU_ITEM_LIKE = 222;
     private static final int MENU_ITEM_SHARE = 333;
@@ -80,10 +84,14 @@ public class DetailSMS extends TabActivity {
     ListView lvSMSFavorite = null;
     private boolean needRefresh;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_sms);
+
+        ImageButton imgadd = (ImageButton)findViewById(R.id.imgadd);
+        ImageButton imghome = (ImageButton)findViewById(R.id.imghome);
 
         MyDatabaseHelper db = new MyDatabaseHelper(this);
         lvSMSValentine = (ListView) findViewById(R.id.lvSMSValentine);
@@ -231,6 +239,13 @@ public class DetailSMS extends TabActivity {
             default :
                 tabHost.setCurrentTab(11);
         }
+
+                imgbHome=(ImageButton)findViewById(R.id.imghome);
+        imgbHome.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
 
     }
 
@@ -453,97 +468,111 @@ public class DetailSMS extends TabActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && requestCode == MY_REQUEST_CODE ) {
-            boolean needRefresh = data.getBooleanExtra("needRefresh",true);
+        if (resultCode == Activity.RESULT_OK && requestCode == MY_REQUEST_CODE) {
+            boolean needRefresh = data.getBooleanExtra("needRefresh", true);
             // Refresh ListView
-            if(needRefresh) {
+            if (needRefresh) {
                 MyDatabaseHelper db = new MyDatabaseHelper(this);
                 int curTab = tabHost.getCurrentTab();
                 List<SMS> list;
 
-                switch(curTab)
-                {
-                    case 0 :
+                switch (curTab) {
+                    case 0:
                         this.arrSMSValentine.clear();
-                        list =  db.getSMS("VLT");
+                        list = db.getSMS("VLT");
                         this.arrSMSValentine.addAll(list);
                         this.adapterValentine.notifyDataSetChanged();
                         break;
-                    case 1 :
+                    case 1:
                         this.arrSMSChristmas.clear();
-                        list =  db.getSMS("CH");
+                        list = db.getSMS("CH");
                         this.arrSMSChristmas.addAll(list);
                         this.adapterChristmas.notifyDataSetChanged();
                         break;
-                    case 2 :
+                    case 2:
                         this.arrSMS2010.clear();
-                        list =  db.getSMS("2010");
+                        list = db.getSMS("2010");
                         this.arrSMS2010.addAll(list);
                         this.adapter2010.notifyDataSetChanged();
                         break;
-                    case 3 :
+                    case 3:
                         this.arrSMS0803.clear();
-                        list =  db.getSMS("83");
+                        list = db.getSMS("83");
                         this.arrSMS0803.addAll(list);
                         this.adapter0803.notifyDataSetChanged();
                         break;
-                    case 4 :
+                    case 4:
                         this.arrSMSGoodNight.clear();
-                        list =  db.getSMS("GN");
+                        list = db.getSMS("GN");
                         this.arrSMSGoodNight.addAll(list);
                         this.adapterGoodNight.notifyDataSetChanged();
                         break;
-                    case 5 :
+                    case 5:
                         this.arrSMSLove.clear();
-                        list =  db.getSMS("LO");
+                        list = db.getSMS("LO");
                         this.arrSMSLove.addAll(list);
                         this.adapterLove.notifyDataSetChanged();
                         break;
-                    case 6 :
+                    case 6:
                         this.arrSMSLove.clear();
-                        list =  db.getSMS("GL");
+                        list = db.getSMS("GL");
                         this.arrSMSLove.addAll(list);
                         this.adapterGoodLuck.notifyDataSetChanged();
                         break;
-                    case 7 :
+                    case 7:
                         this.arrSMSHappy.clear();
-                        list =  db.getSMS("HP");
+                        list = db.getSMS("HP");
                         this.arrSMSHappy.addAll(list);
                         this.adapterHappy.notifyDataSetChanged();
                         break;
-                    case 8 :
+                    case 8:
                         this.arrSMSFavorite.clear();
-                        list =  db.getSMSLiked();
+                        list = db.getSMSLiked();
                         this.arrSMSFavorite.addAll(list);
                         this.adapterFavorite.notifyDataSetChanged();
                         break;
-                    case 9 :
+                    case 9:
                         this.arrSMSGreeting.clear();
-                        list =  db.getSMS("GR");
+                        list = db.getSMS("GR");
                         this.arrSMSGreeting.addAll(list);
                         this.adapterGreeting.notifyDataSetChanged();
                         break;
-                    case 10 :
+                    case 10:
                         this.arrSMSNewYear.clear();
-                        list =  db.getSMS("NY");
+                        list = db.getSMS("NY");
                         this.arrSMSNewYear.addAll(list);
                         this.adapterNewYear.notifyDataSetChanged();
                         break;
-                    default :
+                    default:
                         this.arrSMSBirthday.clear();
-                        list =  db.getSMS("BD");
+                        list = db.getSMS("BD");
                         this.arrSMSBirthday.addAll(list);
                         this.adapterBirthday.notifyDataSetChanged();
                 }
-
+            }
+        }
+    }
+//                public class Item1Activity extends Activity {
+//
+//                    @Override
+//                    protected void onCreate(Bundle savedInstanceState) {
+//                        super.onCreate(savedInstanceState);
+//                        setContentView(R.layout.activity_detail_sms);
+//
+//                        // lấy ActionBar
+//                        ActionBar actionBar = getActionBar();
+//                        // hiển thị nút Up ở Home icon
+//                        actionBar.setDisplayHomeAsUpEnabled(true);
+//
+//
+//                    }
+//                }
 
 //                this.SMSList.clear();
 //                MyDatabaseHelper db = new MyDatabaseHelper(this);
 //                List<SMS> list=  db.getAllSMS();
 //                this.SMSList.addAll(list);
 //                this.listViewAdapter.notifyDataSetChanged();
-            }
-        }
-    }
+
 
 }
