@@ -1,17 +1,13 @@
 package com.duongtran.smskute;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.TabActivity;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -432,10 +427,14 @@ public class DetailSMS extends TabActivity {
         else
         if(item.getItemId() == MENU_ITEM_SENT ){
             Intent sendintent = new Intent(Intent.ACTION_SEND);
-            sendintent.setType("text/plain");
+//            sendintent.setType("text/plain");
             String stringtoshare = selectedSMS.getContent();
-            sendintent.putExtra(Intent.EXTRA_TEXT, stringtoshare );
-            this.startActivity(Intent.createChooser(sendintent, "share via"));
+//            sendintent.putExtra(Intent.EXTRA_TEXT, stringtoshare );
+//            this.startActivity(Intent.createChooser(sendintent, "share via"));
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.putExtra("sms_body", stringtoshare);
+            sendIntent.setType("vnd.android-dir/mms-sms");
+            this.startActivity(sendIntent);
 
         }
         return true;
