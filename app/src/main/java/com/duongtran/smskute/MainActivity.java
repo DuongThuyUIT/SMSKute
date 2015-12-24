@@ -10,7 +10,8 @@ import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
 
-    ImageButton btnSMS = null;
+    ImageButton btnSMS;
+    ImageButton btnEncode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,9 @@ public class MainActivity extends Activity {
 
         btnSMS=(ImageButton) findViewById(R.id.btnSMS);
         btnSMS.setOnClickListener(new MyEvent());
+
+        btnEncode=(ImageButton) findViewById(R.id.btnEncode);
+        btnEncode.setOnClickListener(new MyEvent());
 
         Intent myIntent = new Intent(MainActivity.this, PlaySongService.class);
         this.startService(myIntent);
@@ -39,20 +43,12 @@ public class MainActivity extends Activity {
             {
                 Intent myIntent=new Intent(MainActivity.this, ListTopic.class);
                 startActivity(myIntent);
-
             }
-//            else if(v.getId()==R.id.buttonShowAuthorList)
-//            {
-//                showAuthorList1();
-//            }
-//
-//            else if(v.getId()==R.id.buttonInsertBook)
-//            {
-//                Intent intent=new Intent(MainActivity.this, InsertBookActivity.class);
-//                startActivity(intent);
-//            }
+            else{
+                Intent myIntent=new Intent(MainActivity.this, Encode.class);
+                startActivity(myIntent);
+            }
         }
-
     }
 
 //    @Override
