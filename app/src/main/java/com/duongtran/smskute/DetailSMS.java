@@ -181,75 +181,6 @@ public class DetailSMS extends TabActivity {
         registerForContextMenu(this.lvSMSFavorite);
 
         tabHost = getTabHost();
-//
-
-
-//        tabHost = (TabHost) findViewById
-//                (android.R.id.tabhost);
-//        tabHost.setup();
-////        tabHost.setup();
-//        TabHost.TabSpec spec;
-//
-//        spec=tabHost.newTabSpec("t1");
-//        spec.setContent(R.id.tab1);
-//        spec.setIndicator("1-Calculator");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t2");
-//        spec.setContent(R.id.tab2);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t3");
-//        spec.setContent(R.id.tab3);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t4");
-//        spec.setContent(R.id.tab4);
-//        spec.setIndicator("1-Calculator");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t5");
-//        spec.setContent(R.id.tab5);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t6");
-//        spec.setContent(R.id.tab6);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t7");
-//        spec.setContent(R.id.tab7);
-//        spec.setIndicator("1-Calculator");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t8");
-//        spec.setContent(R.id.tab8);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t9");
-//        spec.setContent(R.id.tab9);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t10");
-//        spec.setContent(R.id.tab10);
-//        spec.setIndicator("1-Calculator");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t11");
-//        spec.setContent(R.id.tab11);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-//
-//        spec=tabHost.newTabSpec("t12");
-//        spec.setContent(R.id.tab12);
-//        spec.setIndicator("2-History");
-//        tabHost.addTab(spec);
-
 
         this.setNewTab(this, tabHost, "tab1", R.string.tab1, R.drawable.valentine, R.id.tab1);
         this.setNewTab(this, tabHost, "tab2", R.string.tab2, R.drawable.christmas, R.id.tab2);
@@ -263,9 +194,6 @@ public class DetailSMS extends TabActivity {
         this.setNewTab(this, tabHost, "tab10", R.string.tab10, R.drawable.greeting, R.id.tab10);
         this.setNewTab(this, tabHost, "tab11", R.string.tab11, R.drawable.newyear_1, R.id.tab11);
         this.setNewTab(this, tabHost, "tab12", R.string.tab12, R.drawable.birthday, R.id.tab12);
-
-
-
 
         Intent callerIntent = getIntent();
         Bundle packageFromCaller = callerIntent.getBundleExtra("MyTopic");
