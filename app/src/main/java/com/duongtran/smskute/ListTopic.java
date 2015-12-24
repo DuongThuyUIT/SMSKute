@@ -1,11 +1,10 @@
 package com.duongtran.smskute;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,6 +18,7 @@ public class ListTopic extends AppCompatActivity {
 
     Button btnValentine  = null;
     Button btnFavorite  = null;
+    ImageButton imgbHome = null;
 
     GridView gridView;
     ArrayList<Item> gridArray = new ArrayList<Item>();
@@ -81,6 +81,13 @@ public class ListTopic extends AppCompatActivity {
 //
 //        btnFavorite=(Button) findViewById(R.id.btn_Favorite);
 //        btnFavorite.setOnClickListener(new eventTopic());
+
+        imgbHome=(ImageButton)findViewById(R.id.imghome);
+        imgbHome.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
     }
 
 //    private class eventTopic implements View.OnClickListener

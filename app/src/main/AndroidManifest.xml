@@ -35,6 +35,12 @@
             </intent-filter>
         </activity>
 
+        <!--<activity-->
+            <!--android:name=".DetailSMS"-->
+            <!--android:label="SMSKute"-->
+            <!--android:parentActivityName="com.duongtran.smskute.MainActivity" >-->
+        <!--</activity>-->
+
         <service
             android:name=".PlaySongService"
             android:enabled="true"

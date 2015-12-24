@@ -16,17 +16,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
             </TabWidget>
-        </HorizontalScrollView>
 
+        </HorizontalScrollView>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/imghome"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/home148"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="onBackPressed" />
+
+            <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/imgadd"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/add20"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="AddSMS" />
+        </FrameLayout>
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="415dp" >
 
             <LinearLayout
                 android:id="@+id/tab1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="446dp" >
 
                 <ListView
                     android:id="@+id/lvSMSValentine"
