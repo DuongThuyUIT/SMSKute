@@ -146,7 +146,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void createDefaultSMSIfNeed()  {
         int count = this.getSMSCount();
         if(count == 0 ) {
-            SMS sms1 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhất.", "VLT", true);
+            SMS sms19 = new SMS("Chúc bạn có một ngày Valentine thật hạnh phúc bên cạnh người bạn yêu. Và tôi chắc hạnh phúc đó được trạo tặng từ một người yêu bạn chân thành nhất.", "VLT", true);
             SMS sms2 = new SMS("Merry christmas cuộc sống của anh! Chúc em một giáng sinh ấp áp với tiếng cười, niềm vui và hạnh phúc", "CH", false);
             SMS sms3 = new SMS("Happ birthday to you! To day was not sunny day but wish It is day full of happy, smile and lucky with you!", "BD", true);
 
@@ -159,25 +159,33 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             "            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n" +
             "            Sinh nhật Vui vẻ !", "BD", false);
 
-            SMS sms5 = new SMS(" +\"\"-.,_,.-\"\"+.\n" +
-                    "            ; #\"-.Happy_.-\"#\n" +
-                    "            *'+. New +\"+*\n" +
-                    "                    +-.Year.-+\n" +
-                    "                    \"-._.-\"\n" +
-                    "            \"-..-*\"-..2016.-*\"-..-\"\n" +
-                    "            Cung chúc tân niên,\n" +
-                    "            Sức khỏe vô biên, thành công liên miên,\n" +
-                    "                    hạnh phúc triền miên, túi luôn đầy tiền,\n" +
-                    "                    sung sướng như tiên.Chúc mừng năm mới.\n" +
-                    "            !", "NY", true);
+            SMS sms5 = new SMS("    @=-=-=-=-=-@\n" +
+                    "    )) *Chuc*  ))\n" +
+                    "   // * mung *//\n" +
+                    "  // * nam * //\n" +
+                    " // * moi * //\n" +
+                    "(( * 2016* ((\n" +
+                    "@=-=-=-=-=-+@", "NY", true);
             SMS sms6 = new SMS("Nhân ngày Phụ nữ Việt Nam, anh và con chúc em luôn luôn mạnh khỏe, vui vẻ và... ăn khỏe. Vợ ơi! Cố gắng ăn nhiều vào nhé! Yêu vợ nhiều lắm. Cảm ơn vợ đã vất vả vì bố con anh!", "2010", true);
             SMS sms7 = new SMS("Nhân ngày 8-3 con chúc mẹ nhiều sức khỏe và nụ cười luôn nở trên môi mẹ. Con ở xa mẹ quá, nên không thể chăm sóc cho mẹ được. Mẹ nhớ giữ gìn sức khỏe! Mong cho mọi điều tốt lành sẽ đến với mẹ! Con yêu mẹ!", "83", true);
             SMS sms8 = new SMS("Chúc người ju bé nhỏ của anh ngủ thật ngoan cho ….. cả thế giới đc yên.", "GN", true);
             SMS sms9 = new SMS("Nắng buổi sáng ấm áp và ông mặt trời đang mỉm cười! Em chúc anh buổi sáng tốt lành, một ngày thật tuyệt và làm việc hiệu quả nhé! Bx nhớ Ox.", "GR", true);
-            SMS sms10 = new SMS("Nhận được tin này là em đã nợ anh một cuộc hẹn\n" +
-                    "Xóa đi là em nợ anh một cuộc tình\n" +
-                    "Trả lời là em nợ anh tất cả,\n" +
-                    "Không trả lời là em đã..”yêu anh", "LO", true);
+            SMS sms10 = new SMS("☆ ·.¸(`'·.¸*¤*¸.·'´)¸.·\n" +
+                    "   ».·º`·.LOVE.·´º·.«\n" +
+                    " ☆.·'(¸.·'´*¤*`'·.¸)`'·.\n" +
+                    "         、、、、、、\n" +
+                    "☆·.¸(`'·.¸*¤*¸.·'´)¸.·\n" +
+                    "   ».·º`·. YOU.·´º·.«\n" +
+                    " ☆.·'(¸.·'´*¤*`'·.¸)`'·.\n" +
+                    "         、、、、、、\n" +
+                    "☆·.¸(`'·.¸*¤*¸.·'´)¸.·\n" +
+                    "   ».·º`· .FOR.·´º·.«\n" +
+                    " ☆.·'(¸.·'´*¤*`'·.¸)`'·.\n" +
+                    "         、、、、、、\n" +
+                    "☆·.¸(`'·.¸*¤*¸.·'´)¸.·\n" +
+                    "   ».·º`· .EVER.·´º·.«\n" +
+                    " ☆.·'(¸.·'´*¤*`'·.¸)`'·.\n" +
+                    "         、、、、、、", "LO", true);
             SMS sms11 = new SMS(" \n" +
                     "      _(^_^)  .   (^.^)_ \n" +
                     "     ,/| |\\, *   ,/| |\\,\n" +
@@ -202,6 +210,67 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     "-Đúng rồi, vì anh chẳng khác gì con bò cả\n" +
                     "\n", "HP", true);
 
+            SMS sms14 = new SMS("* º *º * º *\n" +
+                    "* _Π_*_º_*º*\n" +
+                    "/____＿/~＼* º\n" +
+                    "｜ ▦▦｜□｜*\n" +
+                    "* º *º * º *\n" +
+                    "Thay mặt nhân dân của một đất nước có hơn 2 triệu người chết đói cách đây 65 năm xin chúc quý vị ăn Tết thật xa hoa, lãng phí. ※" +
+                    "\n", "NY", false);
+            SMS sms15 = new SMS("+\"\"-.,_,.-\"\"+.\n" +
+                    "; #\"-.Happy_.-\"#\n" +
+                    "*'+. New +\"+*\n" +
+                    "+-.Year.-+\n" +
+                    "\"-._.-\"\n" +
+                    "\"-..-*\"-..2016.-*\"-..-\"\n" +
+                    "Cung chúc tân niên,\n" +
+                    "Sức khỏe vô biên, thành công liên miên,\n" +
+                    "hạnh phúc triền miên, túi luôn đầy tiền,\n" +
+                    "sung sướng như tiên.Chúc mừng năm mới!\n", "NY", false);
+            SMS sms16 = new SMS("      .:!|!:._.:!|!:.\n" +
+                    "      \"::: Anh :::\"\n" +
+                    "          \"-!|!-\"\n" +
+                    "      .:!|!:._.:!|!:.\n" +
+                    "       \"::: yeu ::\"\n" +
+                    "         \"-!|!-\"\n" +
+                    "     .:!|!:._.:!|!:.\n" +
+                    "       \":: em .::\"\n" +
+                    "         \"-!|!-\"\n" +
+                    "   .:!|!:._.:!|!:._.:!|!:.\n" +
+                    "     \":: mai mai ! ::\"\n" +
+                    "      \"'-!|!-\"\"-!|!-'\"\n" +
+                    "Đừng bao giờ rời xa anh em nhé!", "LO", false);
+            SMS sms17 = new SMS("* º *º * º *\n" +
+                    "* _Π_*_º_*º*\n" +
+                    "/____＿/~＼* º\n" +
+                    "｜ ▦▦｜□｜*\n" +
+                    "* º *º * º *\n" +
+                    "Thay mặt nhân dân của một đất nước có hơn 2 triệu người chết đói cách đây 65 năm xin chúc quý vị ăn Tết thật xa hoa, lãng phí. ※" +
+                    "\n", "VLT", false);
+            SMS sms18 = new SMS("+\"\"-.,_,.-\"\"+.\n" +
+                    "; #\"-.Happy_.-\"#\n" +
+                    "*'+. New +\"+*\n" +
+                    "+-.Year.-+\n" +
+                    "\"-._.-\"\n" +
+                    "\"-..-*\"-..2016.-*\"-..-\"\n" +
+                    "Cung chúc tân niên,\n" +
+                    "Sức khỏe vô biên, thành công liên miên,\n" +
+                    "hạnh phúc triền miên, túi luôn đầy tiền,\n" +
+                    "sung sướng như tiên.Chúc mừng năm mới!\n", "VLT", false);
+            SMS sms1 = new SMS("      .:!|!:._.:!|!:.\n" +
+                    "      \"::: Anh :::\"\n" +
+                    "          \"-!|!-\"\n" +
+                    "      .:!|!:._.:!|!:.\n" +
+                    "       \"::: yeu ::\"\n" +
+                    "         \"-!|!-\"\n" +
+                    "     .:!|!:._.:!|!:.\n" +
+                    "       \":: em .::\"\n" +
+                    "         \"-!|!-\"\n" +
+                    "   .:!|!:._.:!|!:._.:!|!:.\n" +
+                    "     \":: mai mai ! ::\"\n" +
+                    "      \"'-!|!-\"\"-!|!-'\"\n" +
+                    "Đừng bao giờ rời xa anh em nhé!", "VLT", false);
+
             this.addSMS(sms1);
             this.addSMS(sms2);
             this.addSMS(sms3);
@@ -214,7 +283,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             this.addSMS(sms10);
             this.addSMS(sms11);
             this.addSMS(sms13);
-
+            this.addSMS(sms14);
+            this.addSMS(sms15);
+            this.addSMS(sms16);
+            this.addSMS(sms17);
+            this.addSMS(sms18);
+            this.addSMS(sms19);
         }
     }
 

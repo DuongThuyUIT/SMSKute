@@ -82,12 +82,12 @@ public class ListTopic extends AppCompatActivity {
 //        btnFavorite=(Button) findViewById(R.id.btn_Favorite);
 //        btnFavorite.setOnClickListener(new eventTopic());
 
-        imgbHome=(ImageButton)findViewById(R.id.imghome);
-        imgbHome.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            }
-        });
+//        imgbHome=(ImageButton)findViewById(R.id.imghome);
+//        imgbHome.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//            }
+//        });
     }
 
 //    private class eventTopic implements View.OnClickListener

@@ -12,48 +12,46 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Encode extends AppCompatActivity {
     private static final String TAG = "daothuy";
-    Button btnEncrypt;
-    Button btnDecrypt;
-    Button btnCopy;
+    ImageButton btnEncrypt;
+    ImageButton btnDecrypt;
+    ImageButton btnCopy;
+    ImageButton btnSend;
     EditText txt;
     EditText key;
     EditText txtResult;
-    String SMSEncode;
+    String textEncode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encode);
 
-        btnEncrypt = (Button) findViewById(R.id.btnEncrypt);
+        btnEncrypt = (ImageButton) findViewById(R.id.btnEncrypt);
         btnEncrypt.setOnClickListener(new MyEvent());
 
-        btnDecrypt = (Button) findViewById(R.id.btnDecrypt);
+        btnDecrypt = (ImageButton) findViewById(R.id.btnDecrypt);
         btnDecrypt.setOnClickListener(new MyEvent());
 
-        btnCopy = (Button) findViewById(R.id.btnCopy);
+        btnCopy = (ImageButton) findViewById(R.id.btnCopy1);
         btnCopy.setOnClickListener(new MyEvent());
 
-        txt = (EditText) findViewById(R.id.text);
-//        Intent intent = this.getIntent();
-//        SMSEncode = (String) intent.getSerializableExtra("SMSEncode");
-//        if(SMSEncode != null){
-//            txt.setText(SMSEncode);
-//        }
+        btnSend = (ImageButton) findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(new MyEvent());
 
-        Intent callerIntent=getIntent();
-        Bundle packageFromCaller = callerIntent.getBundleExtra("SMSEncode");
-        //Có Bundle rồi thì lấy các thông số dựa vào soa, sob
-        String SMSContent = packageFromCaller.getString("SMSContent");
-        if(SMSContent != null)
-            txt.setText(packageFromCaller.getString("SMSContent"));
+        txt = (EditText) findViewById(R.id.text);
+
+        Intent intent = getIntent();
+        this.textEncode = (String) intent.getSerializableExtra("SMSContent");
+        if(textEncode != null)
+            txt.setText(textEncode);
     }
 
     private class MyEvent implements View.OnClickListener
     {
-
         @Override
         public void onClick(View v) {
             VigenereCipher vi = new VigenereCipher();
@@ -65,15 +63,35 @@ public class Encode extends AppCompatActivity {
             String resultTxt = txtResult.getText().toString();
             if(v.getId()==R.id.btnEncrypt)
             {
-                Log.i(TAG, "button Encrypt ");
-                txtResult.setText(vi.vigenereCipherEn(textString, keyString));
+                if(textString.equals("")){
+                    Toast toast=Toast.makeText(Encode.this,"Text cannot be empty. Please try again!" ,   Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                if(keyString.equals("")){
+                    Toast toast=Toast.makeText(Encode.this,"Key cannot be empty. Please try again!" ,   Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                    txtResult.setText(vi.vigenereCipherEn(textString, keyString));
             }
             else
             if(v.getId()==R.id.btnDecrypt){
-                Log.i(TAG, "button Decrypt ");
+                if(textString.equals("")){
+                    Toast toast=Toast.makeText(Encode.this,"Text cannot be empty. Please try again!" ,   Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                if(keyString.equals("")){
+                    Toast toast=Toast.makeText(Encode.this,"Key cannot be empty. Please try again!" ,   Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
                 txtResult.setText(vi.vigenereCipherDe(textString, keyString));
             }
-            else{
+            else
+            if(v.getId()==R.id.btnSend)
+            {
                 Log.i(TAG, "button Copy ");
                 String send = resultTxt;
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
@@ -81,6 +99,10 @@ public class Encode extends AppCompatActivity {
                 sendIntent.setType("vnd.android-dir/mms-sms");
                 startActivity(sendIntent);
             }
+            else{
+                txt.setText(resultTxt);
+            }
+
         }
     }
 }

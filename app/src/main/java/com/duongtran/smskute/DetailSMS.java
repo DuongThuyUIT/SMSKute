@@ -29,13 +29,14 @@ public class DetailSMS extends TabActivity {
     TabHost tabHost;
 
     ImageButton imgbHome = null;
+    ImageButton imgbAdd = null;
 
     private static final int MENU_ITEM_SENT = 111;
     private static final int MENU_ITEM_LIKE = 222;
     private static final int MENU_ITEM_SHARE = 333;
     private static final int MENU_ITEM_EDIT = 444;
     private static final int MENU_ITEM_DELETE = 555;
-    private static final int MENU_ITEM_CREATE = 666;
+//    private static final int MENU_ITEM_CREATE = 666;
     private static final int MENU_ITEM_ENCODE = 777;
 
     private static final int MY_REQUEST_CODE = 1000;//D
@@ -90,9 +91,6 @@ public class DetailSMS extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_sms);
 
-        ImageButton imgadd = (ImageButton)findViewById(R.id.imgadd);
-        ImageButton imghome = (ImageButton)findViewById(R.id.imghome);
-
         MyDatabaseHelper db = new MyDatabaseHelper(this);
         lvSMSValentine = (ListView) findViewById(R.id.lvSMSValentine);
         lvSMSChristmas = (ListView) findViewById(R.id.lvSMSChristmas);
@@ -120,6 +118,8 @@ public class DetailSMS extends TabActivity {
         List<SMS> listGoodLuck = db.getSMS("GL");
         List<SMS> listHappy = db.getSMS("HP");
         List<SMS> listFavorite = db.getSMSLiked();
+
+
 
         this.arrSMSValentine.addAll(listValentine);
         adapterValentine = new ArrayAdapterSMS(this, R.layout.item_sms, arrSMSValentine);
@@ -240,10 +240,20 @@ public class DetailSMS extends TabActivity {
                 tabHost.setCurrentTab(11);
         }
 
-                imgbHome=(ImageButton)findViewById(R.id.imghome);
+        imgbHome=(ImageButton)findViewById(R.id.imghome);
         imgbHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
+
+
+        imgbAdd=(ImageButton)findViewById(R.id.imgadd);
+        imgbAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailSMS.this, AddEditSmsAtivity.class);
+                intent.putExtra("curTab", tabHost.getCurrentTab());
+                startActivityForResult(intent, MY_REQUEST_CODE);
             }
         });
 
@@ -278,17 +288,17 @@ public class DetailSMS extends TabActivity {
         menu.add(0, MENU_ITEM_SHARE , 2, "Share");
         menu.add(0, MENU_ITEM_EDIT, 3, "Edit");
         menu.add(0, MENU_ITEM_DELETE, 4, "Delete");
-        menu.add(0, MENU_ITEM_CREATE, 5, "Create");
-        menu.add(0, MENU_ITEM_ENCODE, 6, "Encode");
+//        menu.add(0, MENU_ITEM_CREATE, 5, "Create");
+        menu.add(0, MENU_ITEM_ENCODE, 5, "Encode");
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item){
         AdapterView.AdapterContextMenuInfo
                 info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int curTab = tabHost.getCurrentTab();
+        int curTab1 = tabHost.getCurrentTab();
         final SMS selectedSMS;
-        switch(curTab)
+        switch(curTab1)
         {
             case 0 :
                 selectedSMS = (SMS) this.lvSMSValentine.getItemAtPosition(info.position);
@@ -342,16 +352,17 @@ public class DetailSMS extends TabActivity {
                     .show();
         }
         else
-        if(item.getItemId() == MENU_ITEM_CREATE){
-            Intent intent = new Intent(this, AddEditSmsAtivity.class);
-            intent.putExtra("curTab", curTab);
-            this.startActivityForResult(intent, MY_REQUEST_CODE);
-
-        }
-        else if(item.getItemId() == MENU_ITEM_EDIT ){
+//        if(item.getItemId() == MENU_ITEM_CREATE){
+//            Intent intent = new Intent(this, AddEditSmsAtivity.class);
+//            intent.putExtra("curTab", curTab1);
+//            this.startActivityForResult(intent, MY_REQUEST_CODE);
+//
+//        }
+//        else
+        if(item.getItemId() == MENU_ITEM_EDIT ){
             Intent intent = new Intent(this, AddEditSmsAtivity.class);
             intent.putExtra("sms", selectedSMS);
-            intent.putExtra("curTab", curTab);
+            intent.putExtra("curTab", curTab1);
             this.startActivityForResult(intent,MY_REQUEST_CODE);
         }
         else
@@ -386,9 +397,10 @@ public class DetailSMS extends TabActivity {
         if(item.getItemId() == MENU_ITEM_ENCODE){
             String content = selectedSMS.getContent();
             Intent intent = new Intent(this, Encode.class);
-            Bundle bundle=new Bundle();
-            bundle.putString("contentEncode", content);
-            intent.putExtra("SMSEncode", bundle);
+//            Bundle bundle=new Bundle();
+//            bundle.putString("contentEncode", content);
+//            intent.putExtra("SMSEncode", bundle);
+            intent.putExtra("SMSContent", content);
             this.startActivity(intent);
         }
         return true;

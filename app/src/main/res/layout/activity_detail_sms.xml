@@ -23,23 +23,23 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
                 android:id="@+id/imghome"
                 android:layout_gravity="left|center_vertical"
-                android:src="@drawable/home148"
+                android:background="@drawable/home148"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="onBackPressed" />
 
             <ImageButton
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:id="@+id/imgadd"
                 android:layout_gravity="right|center_vertical"
-                android:src="@drawable/add20"
-                android:layout_marginLeft="20dp"
+                android:background="@drawable/add20"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:onClick="AddSMS" />
